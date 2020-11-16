@@ -1,0 +1,84 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Dispatcher</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="data-tables/datatables.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.min.css"/>
+    <!-- JS -->
+    <script type="text/javascript" src="js/jquery-3.0.0.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="data-tables/datatables.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.min.js"></script>
+    <script type="text/javascript" src="js/notification.js"></script>
+    <script type="text/javascript" src="js/dispatcher.js"></script>
+</head>
+
+<body>
+<div class="container" style="padding-top: 100px; width: max-content">
+
+    <div class="row justify-content-center" style="padding-bottom: 30px">
+        <form action="/courier">
+            <button type="submit" class="btn btn-info">к Курьеру</button>
+        </form>
+    </div>
+    <div class="row" style="margin-top: 20px">
+        <div class="col-8" style="padding-left: 0px">
+            <form id="searchTask" class="input-group mb-3">
+                <input id="orderIdInput" name="orderId" type="number" min="0" step="1" class="form-control" placeholder="№ заказа(только цифры)" >
+                <div class="input-group-append">
+                    <button class="btn btn-outline-primary" type="button" id="searchByOrder">найти</button>
+                </div>
+            </form>
+        </div>
+        <div class="col text-right" style="padding-right: 0px">
+            <div>
+                <button type="button" class="btn btn-secondary" id="updateTable">обновить</button>
+            </div>
+        </div>
+    </div>
+    <div class="row text-center">
+        <table class="table-bordered table-striped" id="datatable">
+            <thead>
+            <th>№ заказа</th>
+            <th>зарегистрировано</th>
+            <th></th>
+            <th></th>
+            </thead>
+        </table>
+    </div>
+</div>
+</body>
+
+<div class="modal" id="taskModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Задание</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <input hidden name="taskId" id="taskId">
+                <label class="col-form-label">№ заказа</label>
+                <b><p id="orderId"></p></b>
+                <label class="col-form-label">Зарегистрировано</label>
+                <b><p id="registered"></p></b>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">закрыть</button>
+                <button id="modalButton" type="button" class="btn btn-primary">выполнено</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+</html>
